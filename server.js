@@ -11,20 +11,14 @@ const path = require('path');
 const publicPath = path.join(__dirname, 'client', 'build');
 
 const fs = require('fs');
+fs.readdir(process.env.PWD || process.cwd(), (err, files) => {
+  files.forEach((file) => (str += file));
+});
 
 app.use(express.static(publicPath));
 
-/*
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
-});
-*/
-app.get('/', (req, res) => {
-  let str = '';
-  fs.readdir(process.env.PWD, (err, files) => {
-    files.forEach((file) => (str += file));
-  });
-  res.send(str);
 });
 
 const server = http.createServer(app);
