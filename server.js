@@ -3,11 +3,9 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 const http = require('http');
-const server = http.createServer(app);
 const dotenv = require('dotenv');
 dotenv.config();
 const PORT = process.env.PORT || 5000;
-const io = require('socket.io')(server);
 
 const path = require('path');
 const publicPath = path.join(__dirname, 'client', 'build');
@@ -17,6 +15,9 @@ app.use(express.static(publicPath));
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
+
+const server = http.createServer(app);
+const io = require('socket.io')(server);
 
 server.listen(PORT, () => {
   console.log(`Listening on PORT: ${PORT}`);
