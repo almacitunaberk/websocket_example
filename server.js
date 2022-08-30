@@ -12,7 +12,7 @@ const publicPath = path.join(__dirname, 'client', 'build');
 
 const fs = require('fs');
 fs.readdir(process.env.PWD || process.cwd(), (err, files) => {
-  files.forEach((file) => (str += file));
+  files.forEach((file) => console.log(file));
 });
 
 app.use(express.static(publicPath));
