@@ -7,11 +7,7 @@ const server = http.createServer(app);
 const dotenv = require('dotenv');
 dotenv.config();
 const PORT = process.env.PORT || 5000;
-const io = require('socket.io')(server, {
-  cors: {
-    origin: 'http://localhost',
-  },
-});
+const io = require('socket.io')(server);
 
 const path = require('path');
 const publicPath = path.join(__dirname, '..', 'client', 'build');
