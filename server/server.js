@@ -1,11 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-  })
-);
+app.use(cors());
 const http = require('http');
 const server = http.createServer(app);
 const dotenv = require('dotenv');
