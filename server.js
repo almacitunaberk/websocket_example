@@ -10,13 +10,21 @@ const PORT = process.env.PORT || 5000;
 const path = require('path');
 const publicPath = path.join(__dirname, 'client', 'build');
 
-const os = require('os');
-console.log(os.pwd());
+const fs = require('fs');
 
 app.use(express.static(publicPath));
 
+/*
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
+});
+*/
+app.get('/', (req, res) => {
+  let str = '';
+  fs.readdir(process.env.PWD, (err, files) => {
+    files.forEach((file) => (str += file));
+  });
+  res.send(str);
 });
 
 const server = http.createServer(app);
