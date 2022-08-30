@@ -10,11 +10,6 @@ const PORT = process.env.PORT || 5000;
 const path = require('path');
 const publicPath = path.join(__dirname, 'client', 'build');
 
-const fs = require('fs');
-fs.readdir(process.env.PWD || process.cwd(), (err, files) => {
-  files.forEach((file) => console.log(file));
-});
-
 app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
