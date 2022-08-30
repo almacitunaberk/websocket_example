@@ -13,8 +13,17 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 const io = require('socket.io')(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost',
   },
+});
+
+const path = require('path');
+const publicPath = path.join(__dirname, '..', 'client', 'build');
+
+app.use(express.static(publicPath));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 server.listen(PORT, () => {
